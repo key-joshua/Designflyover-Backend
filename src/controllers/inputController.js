@@ -2,13 +2,16 @@ import { INTERNAL_SERVER_ERROR, BAD_REQUEST, OK } from 'http-status';
 import responseHelper from '../Helpers/responseHelper';
 
 let count = 1;
+const inputOne = [];
+const inputTwo = [];
+
 class AuthController {
   static async handleInputOne(req, res) {
     try {
       count += 1;
 
-      const data = req.params.value;
-      responseHelper.handleSuccess(OK, data);
+      inputOne.push(req.params.value);
+      responseHelper.handleSuccess(OK, inputOne);
       return responseHelper.response(res);
     } catch (error) {
       responseHelper.handleError(INTERNAL_SERVER_ERROR, error.toString());
@@ -23,8 +26,8 @@ class AuthController {
         return responseHelper.response(res);
       }
 
-      const data = req.params.value;
-      responseHelper.handleSuccess(OK, data);
+      inputTwo.push(req.params.value);
+      responseHelper.handleSuccess(OK, inputTwo);
       return responseHelper.response(res);
     } catch (error) {
       responseHelper.handleError(INTERNAL_SERVER_ERROR, error.toString());
